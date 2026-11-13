@@ -1,0 +1,58 @@
+% !TeX program = xelatex
+% !TeX root = main.tex
+% 苏海川博士学位论文主文件
+% 沿用用户提供的四川大学博士论文模板；兼容修复见 README.md。
+\documentclass[academic,doctor,color]{./模板/scuthesis2020}
+
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathrsfs}
+\usepackage{ragged2e}
+\usepackage{needspace}
+% 目录中的章标题至少与其后两行同页。
+\makeatletter
+\AddToHook{cmd/l@chapter/before}{\Needspace{3\baselineskip}}
+\makeatother
+\setlength{\parskip}{3pt plus1pt minus2pt}
+\setlength{\headheight}{15pt}
+\allowdisplaybreaks
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+% 目录初稿的空白正文占位，用于避免连续标题挤出页面；填入正文时移除。
+\newcommand{\ThesisBlank}{\par\noindent\mbox{}\par}
+
+% 基本信息集中填写；未经确认的个人信息保持空白。
+\input{论文信息}
+
+\begin{document}
+\maketitle
+\frontmatter
+\pagenumbering{Roman}
+\pagestyle{fancy}
+\include{章节/摘要}
+\maketoc
+% 正文出现图表后启用：\makefigtablist
+% 符号与缩略语在统一模型确定后补充。
+
+\mainmatter
+\pagenumbering{arabic}
+\pagestyle{fancy}
+\include{章节/01_绪论}
+\include{章节/02_文献综述与理论基础}
+\include{章节/03_网络建模与统一框架}
+\include{章节/04_服务退化传导机制}
+\include{章节/05_服务韧性演化}
+\include{章节/06_信息误差与观测配置}
+\include{章节/07_抢通与调拨联动}
+\include{章节/08_结论与展望}
+
+\backmatter
+% 文献条目经核验后收入 参考文献.bib；不沿用模板示例文献。
+% \bibliographystyle{./模板/gbt7714-numerical}
+% \bibliography{参考文献}
+\chapter{参考文献}
+\label{chap:references}
+% 目前只建立目录，不填入未经核验的引用。
+\include{章节/研究成果}
+\makethanks
+% 正文完成并确认送审信息后启用原模板声明页：
+% \makestatement
+\end{document}
